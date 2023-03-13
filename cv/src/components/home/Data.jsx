@@ -1,10 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Data = () => {
+    const [name, lastName, position, position_title] = useSelector((state) => [
+        state.user?.currentUser.payload?.name,
+        state.user?.currentUser.payload?.lastName,
+        state.user?.currentUser.payload?.position,
+        state.user?.currentUser.payload?.position_title,
+    ]);
+
     return (
         <div className="home__data">
             <h1 className="home__title">
-                Yurii Borys
+                {name + " " + lastName || "Yurii Borys"}
                 <svg
                     width="36"
                     height="36"
@@ -55,11 +63,8 @@ const Data = () => {
                     ></path>
                 </svg>
             </h1>
-            <h3 className="home__subtitle">Front-End Developer</h3>
-            <p className="home__description">
-                I'm front-end developer, and I'm passionate and dedicated to my
-                work.
-            </p>
+            <h3 className="home__subtitle">{position}</h3>
+            <p className="home__description">{position_title}</p>
             <a href="#contact" className="button button--flex">
                 Say Hello
                 <svg

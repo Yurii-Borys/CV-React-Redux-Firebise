@@ -1,72 +1,21 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./qualification.scss";
 import QualificationData from "./QualificationData";
 
 const Qualification = () => {
     const [toogleState, setToogleState] = useState(1);
 
+    const [qualificationEducation, qualificationExpirience] = useSelector(
+        (state) => [
+            state.user?.currentUser.payload?.qualification_education,
+            state.user?.currentUser.payload?.qualification_expirience,
+        ]
+    );
+
     const toggleTab = (index) => {
         setToogleState(index);
     };
-
-    const qualificationExpirience = [
-        {
-            position: "Web Developer",
-            company: "Itex",
-            date: "2022-2023",
-            showViewMore: true,
-            titleExpirience:
-                "Develep web appliactions – NFT games, marketplace, pictures",
-            descriptionExpirience: [
-                "Designed dynamic and multi-browser compatible pages using HTML5, CSS3, FLEX, GRID, SASS, JavaScript, ECMA Script 6, React ( React Function Components ), NEXT JS.",
-                "Planned website development, converting mockups( Figma ) into usable web presence.",
-            ],
-        },
-        {
-            position: "Full Stack",
-            company: "Cyber Craft",
-            date: "2021-2022",
-            showViewMore: true,
-            titleExpirience:
-                "web platform for Senior Housing and HealthScare Real State",
-            descriptionExpirience: [
-                "Created reusable styled components using CSS3 preprocessors like SCSS.",
-                "Created React hooks - fetch, input, loader, validation etc.",
-            ],
-        },
-        {
-            position: "Full Stack",
-            company: "Cyber Craft",
-            date: "2021-2022",
-            showViewMore: true,
-            titleExpirience: "lorem10",
-            descriptionExpirience: [
-                "Estimated work hours and tracked progress using Scrum methodology.",
-                "	Used Firebase like a database.",
-            ],
-        },
-    ];
-
-    const qualificationEducation = [
-        {
-            position: "Fron-End",
-            company: "Soft Serve",
-            date: "",
-            showViewMore: false,
-        },
-        {
-            position: "Full Stack",
-            company: "LITS",
-            date: "",
-            showViewMore: false,
-        },
-        {
-            position: "Full Stack",
-            company: "LITS",
-            date: "",
-            showViewMore: false,
-        },
-    ];
 
     return (
         <section className="qualification section" id="qualification">

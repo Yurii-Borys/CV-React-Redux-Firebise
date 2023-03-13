@@ -1,12 +1,53 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import "./contact.scss";
 import { sendEmailJs } from "../../api/emailJs.js";
+import { serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { db } from "../../FirebaseInitialize";
 
 const Contact = () => {
     const formRef = useRef();
-    const sendEmail = (e) => {
+
+    const [email, skype, telegram] = useSelector((state) => [
+        state.user?.currentUser.payload?.email,
+        state.user?.currentUser.payload?.skype,
+        state.user?.currentUser.payload?.telegram,
+    ]);
+
+    const sendEmail = async (e) => {
         e.preventDefault();
-        const res = sendEmailJs(formRef);
+        //Save message in firestore
+        const day = new Date();
+        const saveMassage = {};
+        const docRef = doc(db, "message", email);
+        Object.values(formRef.current).forEach((value) => {
+            if (value.value) {
+                if (value.name === "name") {
+                    saveMassage["name"] = value.value;
+                }
+                if (value.name === "email") {
+                    saveMassage["email"] = value.value;
+                }
+                if (value.name === "message") {
+                    saveMassage["message"] = value.value;
+                }
+            }
+        });
+
+        try {
+            await setDoc(
+                docRef,
+                {
+                    [day.getTime()]: { saveMassage, time: serverTimestamp() },
+                },
+                { merge: true }
+            );
+        } catch (error) {
+            console.log(error);
+        }
+
+        //Send message 
+        sendEmailJs(formRef);
         e.target.reset();
     };
     return (
@@ -23,12 +64,10 @@ const Contact = () => {
                             <i className="bx bx-mail-send contact__card-icon"></i>
 
                             <h3 className="contact__card_title">Email</h3>
-                            <span className="contact__card-data">
-                                leolux.avto@gmail.com
-                            </span>
+                            <span className="contact__card-data">{email}</span>
 
                             <a
-                                href="mailto:leolux.avto@gmail.com"
+                                href={`mailto:${email}`}
                                 className="contact__button"
                             >
                                 Write me
@@ -40,12 +79,10 @@ const Contact = () => {
                             <i className="bx bxl-skype contact__card-icon"></i>
 
                             <h3 className="contact__card_title">Skype</h3>
-                            <span className="contact__card-data">
-                                live:.cid.974754942cdf37bf
-                            </span>
+                            <span className="contact__card-data">{skype}</span>
 
                             <a
-                                href="skype:live:.cid.974754942cdf37bf?chat"
+                                href={`skype:${skype}?chat`}
                                 className="contact__button"
                             >
                                 Write me
@@ -57,10 +94,12 @@ const Contact = () => {
                             <i className="bx bxl-telegram contact__card-icon"></i>
 
                             <h3 className="contact__card_title">Telegram</h3>
-                            <span className="contact__card-data">@Yur7a</span>
+                            <span className="contact__card-data">
+                                {telegram}
+                            </span>
 
                             <a
-                                href="tg://resolve?domain=@Yur7a"
+                                href={`tg://resolve?domain=${telegram}`}
                                 className="contact__button"
                             >
                                 Write me

@@ -5,6 +5,11 @@
     column-gap: 3rem;
     justify-content: center;
 }
+.skills__languages {
+    grid-template-columns: 450px;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
 
 .skills__content {
     background-color: $container-color;
@@ -70,6 +75,10 @@
 
 @media screen and (max-width: 576px) {
     .skills__container {
+        grid-template-columns: 1fr;
+    }
+
+    .skills__languages {
         grid-template-columns: 1fr;
     }
 

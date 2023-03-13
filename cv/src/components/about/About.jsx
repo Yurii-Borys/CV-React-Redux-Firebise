@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./about.scss";
 import AboutImg from "../../assets/profile.jpg";
-import CV from "../../assets/Yurii_Borys_CV.pdf";
+import { storage } from "../../FirebaseInitialize";
+import { getDownloadURL, ref } from "firebase/storage";
 import Info from "./Info";
 
 const About = () => {
+    //const [url, setUrl] = useState('');
+    const [aboutDescription, cvPdf] = useSelector((state) => [
+        state.user?.currentUser.payload?.about_description,
+        state.user?.currentUser.payload?.cv_pdf,
+    ]);
+
+    const upload = () => {
+        try {
+            storage
+                .ref("Yurii_Borys_CV.pdf")
+                .getDownloadURL()
+                .then((url) => {
+                    console.log(url);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <section className="about section" id="about">
             <h2 className="section__title">About Me</h2>
@@ -14,15 +35,8 @@ const About = () => {
                 <img src={AboutImg} alt="Profile" className="about__img" />
                 <div className="about__data">
                     <Info />
-                    <p className="about__description">
-                        I am a Middle Front-End Developer. I'm an active,
-                        communicable, adaptive, friendly, balanced, cooperative,
-                        curious, determined, honest, kind, and quick learner. I
-                        like systematically absorbing new material and solving
-                        non-standard problems. In my free time I do sports
-                        (swimming, fitness, boxing), fishing, hiking, driving.
-                    </p>
-                    <a download="" href={CV} className="button button--flex">
+                    <p className="about__description">{aboutDescription}</p>
+                    <a onClick={upload} href="" className="button button--flex">
                         Download CV
                         <svg
                             className="button__icon"
