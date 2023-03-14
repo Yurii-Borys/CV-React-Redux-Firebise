@@ -1,10 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Social = () => {
+    const [linkendin, github] = useSelector((state) => [
+        state.user?.currentUser.payload?.linkendin,
+        state.user?.currentUser.payload?.github,
+    ]);
     return (
         <div className="home__social">
             <a
-                href="https://www.linkedin.com/in/yurii-borys-ab3349235/"
+                href={linkendin || " "}
                 className="home__social-icon"
                 target="_blank"
                 rel="noreferrer"
@@ -12,7 +17,7 @@ const Social = () => {
                 <i className="uil uil-linkedin-alt"></i>
             </a>
             <a
-                href="https://github.com/Yurii-Borys?tab=repositories"
+                href={github || " "}
                 className="home__social-icon"
                 target="_blank"
                 rel="noreferrer"

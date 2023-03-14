@@ -61,7 +61,7 @@ const Qualification = () => {
                             <QualificationData
                                 index={index}
                                 key={index + element?.position}
-                                data={element}
+                                data={element || {}}
                             />
                         ))}
                     </div>
@@ -77,7 +77,7 @@ const Qualification = () => {
                             <QualificationData
                                 index={index}
                                 key={index + element?.position}
-                                data={element}
+                                data={element || {}}
                             />
                         ))}
                     </div>

@@ -1,5 +1,5 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 /*=============== VARIABLES CSS ===============*/
 $header-height: 3rem;
 
@@ -11,8 +11,11 @@ $title-color: hsl($hue, $sat, 20%);
 $title-color-dark: hsl($hue, $sat, 0%);
 $text-color: hsl($hue, $sat, 46%);
 $body-color: hsl($hue, $sat, 98%);
+$button-color-disabled: hsl($hue, $sat, 66%);
 $container-color: #fff;
 $border-color-light-dark: rgba(0, 0, 0, 0.1);
+$border-color-error: rgb(248, 170, 170);
+$text-color-error: rgb(248, 170, 170);
 
 /*========== Font and typography ==========*/
 $body-font: "Poppins", sans-serif;
@@ -154,6 +157,11 @@ img {
 
 .button:hover {
   background-color: $title-color-dark;
+}
+
+.button:disabled {
+  background-color: $button-color-disabled;
+  cursor: none;
 }
 
 .button__icon {

@@ -1,30 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import "./about.scss";
-import AboutImg from "../../assets/profile.jpg";
-import { storage } from "../../FirebaseInitialize";
-import { getDownloadURL, ref } from "firebase/storage";
+
 import Info from "./Info";
 
 const About = () => {
-    //const [url, setUrl] = useState('');
-    const [aboutDescription, cvPdf] = useSelector((state) => [
+    const [aboutDescription, cvPdfUrl, imgBase64] = useSelector((state) => [
         state.user?.currentUser.payload?.about_description,
         state.user?.currentUser.payload?.cv_pdf,
+        state.user?.currentUser.payload?.imgBase64,
     ]);
-
-    const upload = () => {
-        try {
-            storage
-                .ref("Yurii_Borys_CV.pdf")
-                .getDownloadURL()
-                .then((url) => {
-                    console.log(url);
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     return (
         <section className="about section" id="about">
@@ -32,11 +17,18 @@ const About = () => {
             <span className="section__subtitle">My intoduction</span>
 
             <div className="about__container container grid">
-                <img src={AboutImg} alt="Profile" className="about__img" />
+                <img src={imgBase64} alt="Profile" className="about__img" />
                 <div className="about__data">
                     <Info />
-                    <p className="about__description">{aboutDescription}</p>
-                    <a onClick={upload} href="" className="button button--flex">
+                    <p className="about__description">
+                        {aboutDescription || ""}
+                    </p>
+                    <a
+                        href={cvPdfUrl || ""}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="button button--flex"
+                    >
                         Download CV
                         <svg
                             className="button__icon"

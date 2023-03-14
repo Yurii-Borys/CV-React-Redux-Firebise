@@ -4,9 +4,22 @@ import "./contact.scss";
 import { sendEmailJs } from "../../api/emailJs.js";
 import { serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { db } from "../../FirebaseInitialize";
+import Input from "../../utils/input/Input";
+import useInput from "../../hooks/useInput";
 
 const Contact = () => {
     const formRef = useRef();
+
+    const emailValue = useInput("", {
+        isEmpty: true,
+        minLength: 3,
+        isEmail: false,
+    });
+
+    const nameValue = useInput("", {
+        isEmpty: true,
+        minLength: 1,
+    });
 
     const [email, skype, telegram] = useSelector((state) => [
         state.user?.currentUser.payload?.email,
@@ -20,6 +33,7 @@ const Contact = () => {
         const day = new Date();
         const saveMassage = {};
         const docRef = doc(db, "message", email);
+
         Object.values(formRef.current).forEach((value) => {
             if (value.value) {
                 if (value.name === "name") {
@@ -30,6 +44,7 @@ const Contact = () => {
                 }
                 if (value.name === "message") {
                     saveMassage["message"] = value.value;
+                    value.value = "";
                 }
             }
         });
@@ -46,9 +61,14 @@ const Contact = () => {
             console.log(error);
         }
 
-        //Send message 
-        sendEmailJs(formRef);
-        e.target.reset();
+        //Send message to email
+        sendEmailJs({ ...saveMassage });
+
+        //Clear input fields
+        emailValue.setValue("");
+        emailValue.setDirty(false);
+        nameValue.setDirty(false);
+        nameValue.setValue("");
     };
     return (
         <section className="contact section" id="contact">
@@ -64,10 +84,12 @@ const Contact = () => {
                             <i className="bx bx-mail-send contact__card-icon"></i>
 
                             <h3 className="contact__card_title">Email</h3>
-                            <span className="contact__card-data">{email}</span>
+                            <span className="contact__card-data">
+                                {email || " "}
+                            </span>
 
                             <a
-                                href={`mailto:${email}`}
+                                href={`mailto:${email || " "}`}
                                 className="contact__button"
                             >
                                 Write me
@@ -79,10 +101,12 @@ const Contact = () => {
                             <i className="bx bxl-skype contact__card-icon"></i>
 
                             <h3 className="contact__card_title">Skype</h3>
-                            <span className="contact__card-data">{skype}</span>
+                            <span className="contact__card-data">
+                                {skype || " "}
+                            </span>
 
                             <a
-                                href={`skype:${skype}?chat`}
+                                href={`skype:${skype || " "}?chat`}
                                 className="contact__button"
                             >
                                 Write me
@@ -95,11 +119,11 @@ const Contact = () => {
 
                             <h3 className="contact__card_title">Telegram</h3>
                             <span className="contact__card-data">
-                                {telegram}
+                                {telegram || " "}
                             </span>
 
                             <a
-                                href={`tg://resolve?domain=${telegram}`}
+                                href={`tg://resolve?domain=${telegram || " "}`}
                                 className="contact__button"
                             >
                                 Write me
@@ -119,21 +143,33 @@ const Contact = () => {
                     >
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Name</label>
-                            <input
+                            {/* <input
                                 type="text"
                                 name="name"
                                 className="contact__form-input"
                                 placeholder="Insert your name"
+                            /> */}
+                            <Input
+                                type="text"
+                                name="name"
+                                placeholder="Insert your name"
+                                inputValues={nameValue}
                             />
                         </div>
 
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Mail</label>
-                            <input
+                            {/* <input
                                 type="email"
                                 name="email"
                                 className="contact__form-input"
                                 placeholder="Insert your email"
+                            /> */}
+                            <Input
+                                type="text"
+                                name="email"
+                                placeholder="Insert your email"
+                                inputValues={emailValue}
                             />
                         </div>
 
@@ -148,7 +184,12 @@ const Contact = () => {
                             ></textarea>
                         </div>
 
-                        <button className="button button--flex">
+                        <button
+                            className="button button--flex"
+                            disabled={
+                                !emailValue.inputValid || !nameValue.inputValid
+                            }
+                        >
                             Send Message
                             <svg
                                 className="button__icon"

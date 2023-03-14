@@ -8,23 +8,23 @@ const SkillsTable = ({ skills, skillsTitle }) => {
     return (
         <div className="skills__content">
             <h3 className="skills__title" ref={elementRef}>
-                {skillsTitle}
+                {skillsTitle || " "}
             </h3>
 
             <div className={`${isOnScreen ? "" : "collapsed"}`}>
                 <ul className="skills__type">
-                    {skills.map((skill) => (
+                    {skills?.map((skill) => (
                         <div
                             className="skills-border"
-                            key={skill.type}
-                            skilltype={skill.type}
+                            key={skill?.type}
+                            skilltype={skill?.type}
                         >
                             <li
-                                key={skill.type}
+                                key={skill?.type}
                                 style={{
-                                    width: `${skill.level}%`,
+                                    width: `${skill?.level}%`,
                                     backgroundColor: `hsla(248, 5%, 0%, ${
-                                        (skill.level / 100) * 0.85
+                                        (skill?.level / 100) * 0.85
                                     })`,
                                 }}
                             ></li>

@@ -61,14 +61,12 @@
 }
 
 .home__img {
-    background: url(../../assets/profile.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 300px;
     height: 300px;
     filter: grayscale(100%);
-    box-shadow: inset 0 0 0 9px RGB(255 255 255 / 30%);
     order: 1;
     justify-self: center;
     animation: profile_animate 8s ease-in-out infinite 1s;
@@ -146,7 +144,6 @@
     .home__img {
         width: 250px;
         height: 250px;
-        box-shadow: inset 0 0 0 7px RGB(255 255 255 / 30%);
     }
 
     .home__scroll {
@@ -173,7 +170,6 @@
     .home__img {
         width: 200px;
         height: 200px;
-        box-shadow: inset 0 0 0 6px RGB(255 255 255 / 30%);
     }
 
     .home__scroll {

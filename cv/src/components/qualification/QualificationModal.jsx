@@ -13,7 +13,9 @@ const QualificationModal = ({
                     className="uil uil-times qualifications__modal-close"
                     onClick={() => closeModal()}
                 ></i>
-                <h3 className="qualifications__modal-title">{position}</h3>
+                <h3 className="qualifications__modal-title">
+                    {position || " "}
+                </h3>
                 <p className="qualifications__modal-description">
                     {titleExpirience}
                 </p>
@@ -25,7 +27,7 @@ const QualificationModal = ({
                         >
                             <i className="uil uil-check-circle qualifications__modal-icon"></i>
                             <p className="qualifications__modal-info">
-                                {element}
+                                {element || " "}
                             </p>
                         </li>
                     ))}

@@ -63,8 +63,8 @@ const Data = () => {
                     ></path>
                 </svg>
             </h1>
-            <h3 className="home__subtitle">{position}</h3>
-            <p className="home__description">{position_title}</p>
+            <h3 className="home__subtitle">{position || " "}</h3>
+            <p className="home__description">{position_title || " "}</p>
             <a href="#contact" className="button button--flex">
                 Say Hello
                 <svg

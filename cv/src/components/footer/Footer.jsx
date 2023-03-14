@@ -12,7 +12,9 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer__container container">
-                <h1 className="footer__title">{name + " " + lastName}</h1>
+                <h1 className="footer__title">
+                    {name + " " + lastName || " "}
+                </h1>
 
                 <ul className="footer__list">
                     <li>
@@ -34,7 +36,7 @@ const Footer = () => {
 
                 <div className="footer__social">
                     <a
-                        href={linkendin}
+                        href={linkendin || " "}
                         className="footer__social-link"
                         target="_blank"
                         rel="noreferrer"
@@ -42,7 +44,7 @@ const Footer = () => {
                         <i className="bx bxl-linkedin"></i>
                     </a>
                     <a
-                        href={github}
+                        href={github || " "}
                         className="footer__social-link"
                         target="_blank"
                         rel="noreferrer"

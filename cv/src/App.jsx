@@ -1,6 +1,8 @@
-import "./App.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { db } from "./FirebaseInitialize";
+import { doc, onSnapshot } from "firebase/firestore";
+import "./App.scss";
 import { getUserInformation } from "./actions/user";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
@@ -17,7 +19,19 @@ function App() {
     const isVisible = useSelector((state) => state.user.isVisible);
 
     useEffect(() => {
-        getUserInformation(dispatch);
+        //subscribe to firebase change
+        const unsub = onSnapshot(
+            doc(db, "user_info", "mGYcON1mIu9xtV8qhLmz"),
+            (doc) => {
+                getUserInformation(dispatch, doc.data());
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        return () => {
+            unsub();
+        };
     }, []);
 
     return (

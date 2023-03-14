@@ -16,11 +16,17 @@ const Skills = () => {
             <span className="section__subtitle">My technical level</span>
 
             <div className="skills__container container grid">
-                <SkillsTable skills={fontSkills} skillsTitle="Front-End" />
-                <SkillsTable skills={backSkills} skillsTitle="Back-End" />
+                <SkillsTable
+                    skills={fontSkills || []}
+                    skillsTitle="Front-End"
+                />
+                <SkillsTable skills={backSkills || []} skillsTitle="Back-End" />
             </div>
             <div className="skills__languages container grid">
-                <SkillsTable skills={languageSkills} skillsTitle="Languages" />
+                <SkillsTable
+                    skills={languageSkills || []}
+                    skillsTitle="Languages"
+                />
             </div>
         </section>
     );

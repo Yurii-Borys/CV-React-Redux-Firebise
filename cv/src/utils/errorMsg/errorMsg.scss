@@ -1,0 +1,10 @@
+@import "../../index.scss";
+
+.error {
+    position: absolute;
+    font-size: 0.8rem;
+    color: $text-color-error;
+    margin-bottom: 15px;
+    bottom: -2.1rem;
+    left: 1.25rem;
+}

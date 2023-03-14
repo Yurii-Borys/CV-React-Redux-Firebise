@@ -16,15 +16,17 @@ const QualificationData = ({ index, data }) => {
                     </>
                 )}
                 <div style={{ textAlign: "center" }}>
-                    <h3 className="qualification__title">{data?.position}</h3>
+                    <h3 className="qualification__title">
+                        {data?.position || " "}
+                    </h3>
                     <span className="qualification__subtitle">
                         <i className="uil uil-university qualification__uil"></i>
-                        {data?.company}
+                        {data?.company || " "}
                     </span>
                     {data?.date && (
                         <div className="qualification__calendar">
                             <i className="uil uil-calendar-alt qualification__uil"></i>
-                            {data?.date}
+                            {data?.date || " "}
                         </div>
                     )}
                     {data?.showViewMore && (
@@ -48,8 +50,8 @@ const QualificationData = ({ index, data }) => {
             </div>
             {showModal && (
                 <QualificationModal
-                    position={data?.position || ""}
-                    titleExpirience={data?.title_expirience || ""}
+                    position={data?.position || " "}
+                    titleExpirience={data?.title_expirience || " "}
                     descriptionExpirience={data?.description_expirience || []}
                     closeModal={() => setShowModal(false)}
                 />
