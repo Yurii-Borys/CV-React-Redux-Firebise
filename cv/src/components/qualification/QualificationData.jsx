@@ -51,8 +51,8 @@ const QualificationData = ({ index, data }) => {
             {showModal && (
                 <QualificationModal
                     position={data?.position || " "}
-                    titleExpirience={data?.title_expirience || " "}
-                    descriptionExpirience={data?.description_expirience || []}
+                    titleExperience={data?.title_expirience || " "}
+                    descriptionExperience={data?.description_expirience || []}
                     closeModal={() => setShowModal(false)}
                 />
             )}

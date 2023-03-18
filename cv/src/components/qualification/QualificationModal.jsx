@@ -2,8 +2,8 @@ import React from "react";
 
 const QualificationModal = ({
     position,
-    titleExpirience,
-    descriptionExpirience,
+    titleExperience,
+    descriptionExperience,
     closeModal,
 }) => {
     return (
@@ -17,10 +17,10 @@ const QualificationModal = ({
                     {position || " "}
                 </h3>
                 <p className="qualifications__modal-description">
-                    {titleExpirience}
+                    {titleExperience}
                 </p>
                 <ul className="qualifications__modal-qualifications grid">
-                    {descriptionExpirience.map((element, index) => (
+                    {descriptionExperience.map((element, index) => (
                         <li
                             className="qualifications__modal-qualification"
                             key={index + element}

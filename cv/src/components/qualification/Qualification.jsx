@@ -6,7 +6,7 @@ import QualificationData from "./QualificationData";
 const Qualification = () => {
     const [toogleState, setToogleState] = useState(1);
 
-    const [qualificationEducation, qualificationExpirience] = useSelector(
+    const [qualificationEducation, qualificationExperience] = useSelector(
         (state) => [
             state.user?.currentUser.payload?.qualification_education,
             state.user?.currentUser.payload?.qualification_expirience,
@@ -45,7 +45,7 @@ const Qualification = () => {
                         onClick={() => toggleTab(2)}
                     >
                         <i className="uil uil-briefcase-alt qualification__icon"></i>
-                        Expirience
+                        Experience
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ const Qualification = () => {
                                 : "qualification__content"
                         }
                     >
-                        {qualificationExpirience.map((element, index) => (
+                        {qualificationExperience.map((element, index) => (
                             <QualificationData
                                 index={index}
                                 key={index + element?.position}
