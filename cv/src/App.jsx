@@ -12,11 +12,15 @@ import Qualification from "./components/qualification/Qualification";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import Loader from "./components/loader/Loader";
+import Notification from "./utils/notification/Notification";
 import "./index.scss";
 
 function App() {
     const dispatch = useDispatch();
     const isVisible = useSelector((state) => state.user.isVisible);
+    const isNotificationVisible = useSelector(
+        (state) => state.notification.isNotificationVisible
+    );
 
     useEffect(() => {
         //subscribe to firebase change
@@ -48,6 +52,7 @@ function App() {
                         <Qualification />
                         <Contact />
                         <Footer />
+                        {isNotificationVisible && <Notification />}
                     </div>
                 </div>
             )}

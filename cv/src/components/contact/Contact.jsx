@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./contact.scss";
 import { sendEmailJs } from "../../api/emailJs.js";
 import { serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { db } from "../../FirebaseInitialize";
 import Input from "../../utils/input/Input";
 import useInput from "../../hooks/useInput";
+import { showNotification } from "../../reducers/notificationReducer";
 
 const Contact = () => {
     const formRef = useRef();
+    const dispatch = useDispatch();
 
     const emailValue = useInput("", {
         isEmpty: true,
@@ -62,7 +64,17 @@ const Contact = () => {
         }
 
         //Send message to email
-        sendEmailJs({ ...saveMassage });
+        const isSendMessage = sendEmailJs({ ...saveMassage });
+        isSendMessage
+            ? dispatch(
+                  showNotification(
+                      "Thank you. Your massage has been sent.",
+                      "success"
+                  )
+              )
+            : dispatch(
+                  showNotification("Your massage has not been sent.", "error")
+              );
 
         //Clear input fields
         emailValue.setValue("");

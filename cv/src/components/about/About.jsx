@@ -17,7 +17,7 @@ const About = () => {
             <span className="section__subtitle">My intoduction</span>
 
             <div className="about__container container grid">
-                <img src={imgBase64} alt="Profile" className="about__img" />
+                <img src={imgBase64} format="svg" alt="Profile" className="about__img" />
                 <div className="about__data">
                     <Info />
                     <p className="about__description">

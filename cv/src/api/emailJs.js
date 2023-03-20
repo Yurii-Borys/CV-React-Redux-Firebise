@@ -1,12 +1,17 @@
 import emailjs from '@emailjs/browser';
-import config from '../config/settings.js'
+import config from '../config/settings.js';
+
 
 export function sendEmailJs(templateParams) {
 
-    const sendEmail = emailjs.send(config.emailJsConfig.SERVICE_ID, config.emailJsConfig.TEMPLATE_ID, templateParams, config.emailJsConfig.PUBLIC_KEY)
-        .then((result) => {
-            console.log(result.text);
+    let result = false;
+    emailjs.send(config.emailJsConfig.SERVICE_ID, config.emailJsConfig.TEMPLATE_ID, templateParams, config.emailJsConfig.PUBLIC_KEY)
+        .then((response) => {
+            if (response.text === "Ok") {
+                result = true;
+            };
         }, (error) => {
+            result = false;
             console.log(error.text);
         })
         .catch((error) => {
@@ -14,6 +19,6 @@ export function sendEmailJs(templateParams) {
         })
 
     return {
-        sendEmail
+        result
     };
 }

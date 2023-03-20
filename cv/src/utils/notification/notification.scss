@@ -1,0 +1,27 @@
+@import "../../index.scss";
+
+.notification__contentBox {
+    z-index: $z-modal;
+    color: #fff;
+    text-align: center;
+    padding: 30px 30px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: hsl(0, 0%, 66%);
+    opacity: 0.8;
+}
+
+.error {
+    border: 2px solid $border-color-error;
+    border-color: $border-color-error;
+    color: $text-color-error;
+}
+
+.success {
+    border: 2px solid $border-color-success;
+    border-color: $border-color-success;
+    color: $text-color-success;
+}
