@@ -8,6 +8,4 @@ export const getUserInformation = (dispatch, profileData) => {
             ...profileData || {}
         }
     }))
-
-
 }

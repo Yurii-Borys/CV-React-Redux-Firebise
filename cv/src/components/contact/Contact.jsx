@@ -30,6 +30,7 @@ const Contact = () => {
     ]);
 
     const sendEmail = async (e) => {
+        debugger;
         e.preventDefault();
         //Save message in firestore
         const day = new Date();
@@ -69,11 +70,14 @@ const Contact = () => {
             ? dispatch(
                   showNotification(
                       "Thank you. Your massage has been sent.",
-                      "success"
+                      "notification__success"
                   )
               )
             : dispatch(
-                  showNotification("Your massage has not been sent.", "error")
+                  showNotification(
+                      "Your massage has not been sent.",
+                      "notification__error"
+                  )
               );
 
         //Clear input fields
@@ -155,12 +159,6 @@ const Contact = () => {
                     >
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Name</label>
-                            {/* <input
-                                type="text"
-                                name="name"
-                                className="contact__form-input"
-                                placeholder="Insert your name"
-                            /> */}
                             <Input
                                 type="text"
                                 name="name"
@@ -171,12 +169,6 @@ const Contact = () => {
 
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Mail</label>
-                            {/* <input
-                                type="email"
-                                name="email"
-                                className="contact__form-input"
-                                placeholder="Insert your email"
-                            /> */}
                             <Input
                                 type="text"
                                 name="email"

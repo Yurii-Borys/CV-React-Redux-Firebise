@@ -1,12 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { privateRoutes, publicRoutes } from "../routes/routes";
 
 const AppRouter = () => {
-    const auth = false;
+    const isAuth = useSelector((state) => state.user.isAuth);
+
     return (
         <Routes>
-            {true &&
+            {!isAuth &&
                 publicRoutes.map(({ path, element, exact }) => (
                     <Route
                         key={path}
@@ -15,7 +17,7 @@ const AppRouter = () => {
                         exact={exact}
                     />
                 ))}
-            {true &&
+            {isAuth &&
                 privateRoutes.map(({ path, element, exact }) => (
                     <Route
                         key={path}

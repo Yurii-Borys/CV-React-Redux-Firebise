@@ -9,10 +9,14 @@ import {
 } from "firebase/storage";
 
 import config
-from "./config/settings.js";
+    from "./config/settings.js";
+import {
+    getAuth
+} from "firebase/auth";
 
 
 const app = initializeApp(config.firebaseConfig);
 
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);

@@ -1,6 +1,6 @@
 import Admin from "../pages/Admin";
 import Main from "../pages/Main";
-import Login  from "../pages/Login";
+import Login  from "../pages/login/Login";
 
 export const publicRoutes = [
     { path: "/", element: <Main /> , exact: true },

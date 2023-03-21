@@ -12,15 +12,16 @@
     border-radius: 8px;
     background-color: hsl(0, 0%, 66%);
     opacity: 0.8;
+    height: max-content;
 }
 
-.error {
+.notification__error {
     border: 2px solid $border-color-error;
     border-color: $border-color-error;
     color: $text-color-error;
 }
 
-.success {
+.notification__success {
     border: 2px solid $border-color-success;
     border-color: $border-color-success;
     color: $text-color-success;

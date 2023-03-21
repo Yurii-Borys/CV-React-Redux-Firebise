@@ -1,10 +1,11 @@
 import "./header.scss";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { navBarList } from "../../utils/NavBarList/NavbarList";
 
 const Header = () => {
     const [showToggleMenu, setShowToggleMenu] = useState(false);
-    const [activeNav, setActiveNav] = useState("#home");
+    const [activeNav, setActiveNav] = useState("home");
     const [name, lastName] = useSelector((state) => [
         state.user?.currentUser.payload?.name,
         state.user?.currentUser.payload?.lastName,
@@ -30,86 +31,30 @@ const Header = () => {
                     }
                 >
                     <ul className="nav__list">
-                        <li
-                            className="nav___item"
-                            onClick={() => setActiveNav("#home")}
-                        >
-                            <a
-                                href="#home"
-                                className={
-                                    activeNav === "#home"
-                                        ? "nav__link active-link"
-                                        : "nav__link"
-                                }
-                            >
-                                <i className="uil uil-estate nav__icon"></i>
-                                Home
-                            </a>
-                        </li>
-                        <li
-                            className="nav___item"
-                            onClick={() => setActiveNav("#about")}
-                        >
-                            <a
-                                href="#about"
-                                className={
-                                    activeNav === "#about"
-                                        ? "nav__link active-link"
-                                        : "nav__link"
-                                }
-                            >
-                                <i className="uil uil-user nav__icon"></i>
-                                About
-                            </a>
-                        </li>
-                        <li
-                            className="nav___item"
-                            onClick={() => setActiveNav("#skills")}
-                        >
-                            <a
-                                href="#skills"
-                                className={
-                                    activeNav === "#skills"
-                                        ? "nav__link active-link"
-                                        : "nav__link"
-                                }
-                            >
-                                <i className="uil uil-file-alt nav__icon"></i>
-                                Skills
-                            </a>
-                        </li>
-                        <li
-                            className="nav___item"
-                            onClick={() => setActiveNav("#qualification")}
-                        >
-                            <a
-                                href="#qualification"
-                                className={
-                                    activeNav === "#qualification"
-                                        ? "nav__link active-link"
-                                        : "nav__link"
-                                }
-                            >
-                                <i className="uil uil-briefcase-alt nav__icon"></i>
-                                Qualification
-                            </a>
-                        </li>
-                        <li
-                            className="nav___item"
-                            onClick={() => setActiveNav("#contact")}
-                        >
-                            <a
-                                href="#contact"
-                                className={
-                                    activeNav === "#contact"
-                                        ? "nav__link active-link"
-                                        : "nav__link"
-                                }
-                            >
-                                <i className="uil uil-message nav__icon"></i>
-                                Contact
-                            </a>
-                        </li>
+                        {navBarList.map((link, id) => {
+                            return (
+                                <>
+                                    <li
+                                        className="nav___item"
+                                        onClick={() => setActiveNav(link)}
+                                        key={link + id}
+                                    >
+                                        <a
+                                            href={`#${link}`}
+                                            className={
+                                                activeNav === link
+                                                    ? "nav__link active-link"
+                                                    : "nav__link"
+                                            }
+                                        >
+                                            <i className="uil uil-estate nav__icon"></i>
+                                            {link.charAt(0).toUpperCase() +
+                                                link.slice(1)}
+                                        </a>
+                                    </li>
+                                </>
+                            );
+                        })}
                     </ul>
 
                     <i

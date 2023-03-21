@@ -1,0 +1,74 @@
+@import "../../index.scss";
+
+.login__container {
+    grid-template-columns: repeat(1, max-content);
+    justify-content: center;
+    column-gap: 6rem;
+    padding-bottom: 3rem;
+}
+
+.login__title {
+    text-align: center;
+    font-size: $h3-font-size;
+    font-weight: $font-medium;
+    margin-bottom: $mb-1-5;
+}
+
+.login__form {
+    width: 360px;
+    button {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    svg{
+        margin-left: 10px;
+    }
+    }
+}
+
+.login__form-div {
+    position: relative;
+    margin-bottom: $mb-2;
+    height: 4rem;
+}
+
+.login__form-tag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.25rem;
+    font-size: $smaller-font-size;
+    padding: 0.25rem;
+    background-color: $body-color;
+    z-index: 10;
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .login__container {
+        column-gap: 3rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .logint__container {
+        grid-template-columns: 1fr;
+        row-gap: 3rem;
+    }
+
+    .login__form {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .login__info {
+        grid-template-columns: 1fr;
+    }
+
+    .login__form {
+        width: 300px;
+    }
+}

@@ -13,14 +13,14 @@ export default function notificationReducer(state = defaultState, action) {
         case NOTIFICATION_MODE_ERROR:
             return {
                 ...state,
-                notificationModeStyle: "error",
+                notificationModeStyle: "notification__error",
                     notoficationText: action.payload.message,
                     isNotificationVisible: true
             };
         case NOTIFICATION_MODE_SUCCESS:
             return {
                 ...state,
-                notificationModeStyle: "success",
+                notificationModeStyle: "notification__success",
                     notoficationText: action.payload.message,
                     isNotificationVisible: true
             };
@@ -38,7 +38,7 @@ export default function notificationReducer(state = defaultState, action) {
 
 
 export const showNotification = (message, notificationMode) => {
-    if (notificationMode === "error") {
+    if (notificationMode === "notification__error") {
         return {
             type: NOTIFICATION_MODE_ERROR,
             payload: {
@@ -47,7 +47,7 @@ export const showNotification = (message, notificationMode) => {
         }
     }
 
-    if (notificationMode === "success") {
+    if (notificationMode === "notification__success") {
         return {
             type: NOTIFICATION_MODE_SUCCESS,
             payload: {

@@ -1,0 +1,1 @@
+export const navBarList = ["home", "about", "skills", "qualification", "contact"];
