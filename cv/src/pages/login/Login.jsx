@@ -15,9 +15,11 @@ const Login = () => {
     const isNotificationVisible = useSelector(
         (state) => state.notification.isNotificationVisible
     );
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formRef = useRef();
+    
     const emailValue = useInput("", {
         isEmpty: true,
         minLength: 3,
@@ -62,7 +64,7 @@ const Login = () => {
     };
     return (
         <>
-            <section className="login section">
+            <section className="login">
                 <div className="login__container container grid">
                     <div className="login__content">
                         <h3 className="login__title">Log in</h3>

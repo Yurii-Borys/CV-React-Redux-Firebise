@@ -1,15 +1,29 @@
 import "./header.scss";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { navBarList } from "../../utils/NavBarList/NavbarList";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../FirebaseInitialize";
+import { signOutUser } from "../../reducers/userReducer";
 
 const Header = () => {
     const [showToggleMenu, setShowToggleMenu] = useState(false);
     const [activeNav, setActiveNav] = useState("home");
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [name, lastName] = useSelector((state) => [
         state.user?.currentUser.payload?.name,
         state.user?.currentUser.payload?.lastName,
     ]);
+    const isAuth = useSelector((state) => state.user.isAuth);
+
+    const logOut = () => {
+        auth.signOut()
+            .then(() => dispatch(signOutUser()))
+            .catch((error) => console.log(error));
+    };
 
     // Change background header---------------------------------------------------
     window.addEventListener("scroll", function () {
@@ -31,16 +45,34 @@ const Header = () => {
                     }
                 >
                     <ul className="nav__list">
-                        {navBarList.map((link, id) => {
-                            return (
-                                <>
+                        {navBarList
+                            .filter((nav) => {
+                                if (!isAuth) {
+                                    return !(
+                                        nav === "admin" || nav === "logout"
+                                    );
+                                } else return nav;
+                            })
+                            .map((link, id) => {
+                                return (
                                     <li
                                         className="nav___item"
-                                        onClick={() => setActiveNav(link)}
+                                        onClick={() => {
+                                            setActiveNav(link);
+                                            link === "admin" &&
+                                                navigate(`/${link}`);
+                                            link === "logout" && logOut();
+                                        }}
                                         key={link + id}
                                     >
                                         <a
-                                            href={`#${link}`}
+                                            href={
+                                                (link === "admin" && " ") ||
+                                                (link === "logout" && " ") ||
+                                                (link !== "admin" &&
+                                                    link !== "logout" &&
+                                                    `#${link}`)
+                                            }
                                             className={
                                                 activeNav === link
                                                     ? "nav__link active-link"
@@ -52,9 +84,8 @@ const Header = () => {
                                                 link.slice(1)}
                                         </a>
                                     </li>
-                                </>
-                            );
-                        })}
+                                );
+                            })}
                     </ul>
 
                     <i

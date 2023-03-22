@@ -1,10 +1,16 @@
 @import "../../index.scss";
 
+.login {
+    height: calc(100vh - 60px);
+}
+
 .login__container {
     grid-template-columns: repeat(1, max-content);
     justify-content: center;
+    align-items: center;
     column-gap: 6rem;
     padding-bottom: 3rem;
+    height: inherit;
 }
 
 .login__title {
@@ -20,9 +26,9 @@
         width: 100%;
         text-align: center;
         justify-content: center;
-    svg{
-        margin-left: 10px;
-    }
+        svg {
+            margin-left: 10px;
+        }
     }
 }
 
@@ -41,7 +47,6 @@
     background-color: $body-color;
     z-index: 10;
 }
-
 
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
