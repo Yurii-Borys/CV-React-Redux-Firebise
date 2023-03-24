@@ -30,7 +30,6 @@ const Contact = () => {
     ]);
 
     const sendEmail = async (e) => {
-        debugger;
         e.preventDefault();
         //Save message in firestore
         const day = new Date();

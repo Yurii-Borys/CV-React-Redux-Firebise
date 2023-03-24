@@ -15,3 +15,10 @@ export const returnFirstError = (array) => {
     })
     return newA[0] ? newA[0] : "";
 }
+
+export const validateImageFormat = (image) => {
+     if (!image?.name.match(/\.(jpg|jpeg|png)$/)) {
+        return false;
+    }
+    return true;
+}

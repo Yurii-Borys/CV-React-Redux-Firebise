@@ -1,0 +1,35 @@
+@import "../../../index.scss";
+
+.nav_admin__list {
+    margin: 0px 2rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    gap: 0.1rem;
+}
+
+.nav_admin___item {
+    background-color: #fff;
+    border: 1px solid $border-color-light-dark;
+    padding: 1rem;
+     background-color: hsl($hue, $sat, 66%);
+      color: white;
+}
+
+.nav_admin___item:not(:first-child) {
+    border-left: 1px solid #fff;
+}
+
+.nav_admin___item:hover,
+.nav_admin___item_active {
+    background-color: #fff;
+    color: black
+}
+
+.tabs-admin__block {
+    background-color: #fff;
+    margin: 0px 2rem;
+    border: 1px solid $border-color-light-dark;
+    border-radius: 0px 0px 8px 8px;
+    padding: 2rem;
+}

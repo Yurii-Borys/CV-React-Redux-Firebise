@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/admin/header/Header";
+import Main from "../components/admin/main/Main";
 
 const Admin = () => {
-  return (
-    <div>Admin</div>
-  )
-}
+    return (
+        <>
+        <Header />
+        <Main />
+        </>
+    );
+};
 
-export default Admin
+export default Admin;
