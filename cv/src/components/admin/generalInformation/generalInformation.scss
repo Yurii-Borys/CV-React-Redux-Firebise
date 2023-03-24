@@ -2,6 +2,7 @@
 
 .general__container {
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: $mb-3;
 }
 
 .general__data {
@@ -15,6 +16,7 @@
     }
     i {
         margin-left: 0.5rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -66,6 +68,36 @@
 .general__description {
     margin-bottom: $mb-2-5;
 }
+.general_main__information {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1rem;
+    justify-items: center;
+    //border: 1px solid hsl($hue, $sat, 66%);;
+}
+
+.general__form-div {
+    position: relative;
+    margin-bottom: $mb-2;
+    height: 4rem;
+    width: 760px;
+}
+
+.general__form-tag {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -0.75rem;
+    left: 1.25rem;
+    font-size: $smaller-font-size;
+    padding: 0 0.25rem ;
+    background-color: #fff;
+    z-index: 10;
+    i {
+        font-size: 1rem;
+        margin-left: .2rem;
+    }
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
@@ -90,12 +122,17 @@
 
     .general__data {
         text-align: center;
+        width: 100%;
+        padding: 1rem;
     }
 
     .general__description {
         padding: 0 5rem;
         margin-bottom: 2rem;
     }
+    .general__form-div {
+    width: 100%
+}
 }
 
 /* For medium devices */

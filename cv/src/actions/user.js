@@ -29,3 +29,18 @@ export const uploadPlofileImage = async (dispatch, image) => {
         return false;
     }
 }
+
+export const uploadPlofileMainInformation = async (dispatch, {
+    ...uploadInformation
+}) => {
+    const profile = doc(db, "user_info", "mGYcON1mIu9xtV8qhLmz")
+    try {
+        await updateDoc(profile, {
+            ...uploadInformation
+        });
+        return true;
+    } catch (error) {
+        console.log(error)
+        return false;
+    }
+}
