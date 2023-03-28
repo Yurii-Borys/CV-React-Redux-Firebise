@@ -4,16 +4,17 @@ import GeneralInformation from "../generalInformation/GeneralInformation";
 import Education from "../education/Education";
 import Experience from "../experience/Experience";
 import Skills from "../skills/Skills";
+import Qualification from "../qualification/Qualification";
 
 const Main = () => {
     const [activeNav, setActiveNav] = useState("general information");
 
     let list = {
         "general information": GeneralInformation,
-        "education": Education,
-        "experience": Experience,
-        "skills": Skills,
-        "qualification": null,
+        education: Education,
+        experience: Experience,
+        skills: Skills,
+        qualification: Qualification,
     };
 
     const DynamicComponent = [
@@ -21,6 +22,7 @@ const Main = () => {
         Education,
         Experience,
         Skills,
+        Qualification
     ].find((component) => component === list[activeNav]);
 
     return (
@@ -45,6 +47,28 @@ const Main = () => {
                         );
                     })}
                 </ul>
+                <select
+                    className="tabs_select-admin"
+                    onChange={(e) => {
+                        setActiveNav(e.target.value);
+                    }}
+                >
+                    {Object.keys(list)?.map((item, id) => {
+                        return (
+                            <option
+                                className={
+                                    activeNav === item
+                                        ? "nav_admin___item nav_admin___item_active"
+                                        : "nav_admin___item"
+                                }
+                                key={item + id}
+                                value={item}
+                            >
+                                {item.charAt(0).toUpperCase() + item.slice(1)}
+                            </option>
+                        );
+                    })}
+                </select>
                 <div className="tabs-admin__block">
                     <DynamicComponent />
                 </div>

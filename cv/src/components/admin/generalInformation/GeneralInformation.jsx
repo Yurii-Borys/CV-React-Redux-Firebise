@@ -17,7 +17,6 @@ const GeneralInformation = () => {
         (state) => state.notification.isNotificationVisible
     );
     const [
-        info,
         name,
         lastName,
         position,
@@ -30,7 +29,6 @@ const GeneralInformation = () => {
         telegram,
         imgBase64,
     ] = useSelector((state) => [
-        state.user?.currentUser.payload,
         state.user?.currentUser.payload.name,
         state.user?.currentUser.payload.lastName,
         state.user?.currentUser.payload.position,

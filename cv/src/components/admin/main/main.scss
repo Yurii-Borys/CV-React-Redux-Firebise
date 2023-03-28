@@ -9,11 +9,11 @@
 }
 
 .nav_admin___item {
-    background-color: #fff;
+    background-color: $background-color-white;
     border: 1px solid $border-color-light-dark;
     padding: 1rem;
     background-color: hsl($hue, $sat, 66%);
-    color: white;
+    color: $text-color-white;
 }
 
 .nav_admin___item:not(:first-child) {
@@ -22,18 +22,31 @@
 
 .nav_admin___item:hover,
 .nav_admin___item_active {
-    background-color: #fff;
-    color:  #000;;
+    background-color: $background-color-white;
+    color: #000;
 }
 
 .tabs-admin__block {
-    display: flex;
-    justify-content: center;
-    background-color: #fff;
+    background-color: $background-color-white;
     margin: 0px 2rem;
     border: 1px solid $border-color-light-dark;
     border-radius: 0px 0px 8px 8px;
     padding: 2rem;
+}
+
+.tabs_select-admin {
+    display: none;
+    outline: none;
+    margin: 0px 1rem;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    background-color: hsl(0, 0%, 66%);
+    color: $text-color-white;
+    border-radius: 0.75rem 0.75rem 0 0;
+    border: none;
+    font-size: $h1-font-size;
+    font-weight: $font-medium;
+    text-align: center;
 }
 
 /*=============== BREAKPOINTS ===============*/
@@ -51,6 +64,13 @@
 
 /* For medium devices */
 @media screen and (max-width: 576px) {
+    .nav_admin__list {
+        display: none;
+    }
+    .tabs_select-admin {
+        font-size: $h2-font-size;
+         display: block;
+    }
 }
 
 /* For small devices */

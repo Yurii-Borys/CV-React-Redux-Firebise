@@ -1,0 +1,128 @@
+@import "../../../index.scss";
+
+.admin_education__form-section {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: $mb-2;
+}
+
+.admin_education__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.75rem;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+
+.admin_education__form-div {
+    position: relative;
+    height: 4rem;
+    width: 100%;
+
+    input {
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        background: none;
+        color: hsl(0, 0%, 46%);
+        outline: none;
+        border-radius: 0.75rem;
+        padding: 0.5rem;
+    }
+}
+
+.admin_education__form-tag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.25rem;
+    font-size: $smaller-font-size;
+    padding: 0 0.25rem;
+    background-color: $background-color-white;
+    z-index: 10;
+    i {
+        font-size: 1rem;
+        margin-left: 0.2rem;
+    }
+}
+
+.admin_education__button {
+    display: flex;
+    gap: 1rem;
+    align-self: center;
+    justify-content: center;
+    i {
+        margin-left: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    button {
+        width: 340px;
+        justify-content: center;
+    }
+}
+
+.admin_education__button-delete {
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 0.5rem 1rem;
+    }
+    i {
+        margin-left: 0.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+.education__modal-close {
+    color: #333;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 0;
+}
+
+.admin_education__button-add {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+        &:hover {
+            color: hsl(0, 0%, 0%);
+        }
+        &::before {
+            font-size: 10rem;
+        }
+    }
+}
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .admin_education__form-section {
+        grid-template-columns: repeat(2, 45%);
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 576px) {
+    .admin_education__form-section {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        padding: 0px 1rem;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+}
