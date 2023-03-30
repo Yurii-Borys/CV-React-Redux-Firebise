@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import QualificationModal from "./QualificationModal";
 
 const QualificationData = ({ index, data }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [IsShowModal, setIsShowModal] = useState(false);
+
     return (
         <>
             <div className="qualification__data">
@@ -33,7 +34,7 @@ const QualificationData = ({ index, data }) => {
                         <>
                             <div
                                 className="qualification__button"
-                                onClick={() => setShowModal(true)}
+                                onClick={() => setIsShowModal(true)}
                             >
                                 View More
                                 <i className="uil uil-arrow-right qualification__button-icon"></i>
@@ -48,12 +49,12 @@ const QualificationData = ({ index, data }) => {
                     </div>
                 )}
             </div>
-            {showModal && (
+            {IsShowModal && (
                 <QualificationModal
                     position={data?.position || " "}
                     titleExperience={data?.title_expirience || " "}
                     descriptionExperience={data?.description_expirience || []}
-                    closeModal={() => setShowModal(false)}
+                    closeModal={() => setIsShowModal(false)}
                 />
             )}
         </>

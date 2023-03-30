@@ -59,3 +59,18 @@ export const uploadEducationInformation = async (dispatch, [
         return false;
     }
 }
+
+export const uploadExperienceInformation = async (dispatch, [
+    ...uploadInformation
+]) => {
+    const profile = doc(db, "user_info", "mGYcON1mIu9xtV8qhLmz")
+    try {
+        await updateDoc(profile, {
+            qualification_expirience: [...uploadInformation]
+        });
+        return true;
+    } catch (error) {
+        console.log(error)
+        return false;
+    }
+}

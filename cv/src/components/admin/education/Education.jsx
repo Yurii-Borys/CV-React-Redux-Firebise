@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { uploadEducationInformation } from "../../../actions/user";
 import Notification from "../../../utils/notification/Notification";
 import { showNotification } from "../../../reducers/notificationReducer";
-import "./experience.scss";
+import "./education.scss";
 
 const Education = () => {
     const dispatch = useDispatch();
