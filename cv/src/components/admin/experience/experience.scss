@@ -167,7 +167,7 @@
 }
 
 .experience-description__form-div {
-  position: relative;
+    position: relative;
     height: 100%;
     width: 100%;
     display: grid;
@@ -194,7 +194,7 @@
     display: block;
     padding: 0.7rem;
     margin-bottom: 10px;
-    font-size: .7rem;
+    font-size: 0.7rem;
 }
 
 /*=============== BREAKPOINTS ===============*/
@@ -219,9 +219,9 @@
     .experience__modal-textarea {
         font-size: 0.6rem;
     }
-    .experience__modal-content
-    {
-        width: 400px;
+    .experience__modal-content {
+        width: 100%;
+        height: 80%;
     }
 }
 

@@ -74,3 +74,22 @@ export const uploadExperienceInformation = async (dispatch, [
         return false;
     }
 }
+
+export const uploadSkillsInformation = async (dispatch, {
+    backSkills,
+    frontSkills,
+    languageSkills
+}) => {
+    const profile = doc(db, "user_info", "mGYcON1mIu9xtV8qhLmz")
+    try {
+        await updateDoc(profile, {
+            back_skills: [...backSkills],
+            font_skills: [...frontSkills],
+            languages: [...languageSkills],
+        });
+        return true;
+    } catch (error) {
+        console.log(error)
+        return false;
+    }
+}
