@@ -6,6 +6,7 @@ import { showNotification } from "../../../reducers/notificationReducer";
 import {
     uploadPlofileImage,
     uploadPlofileMainInformation,
+    uploadPlofileCV,
 } from "../../../actions/user";
 import Notification from "../../../utils/notification/Notification";
 import Input from "../../../utils/input/Input";
@@ -17,6 +18,8 @@ const GeneralInformation = () => {
         (state) => state.notification.isNotificationVisible
     );
     const [
+        cvPdf,
+        cvPdfNameOld,
         name,
         lastName,
         position,
@@ -29,6 +32,8 @@ const GeneralInformation = () => {
         telegram,
         imgBase64,
     ] = useSelector((state) => [
+        state.user?.currentUser.payload.cv_pdf,
+        state.user?.currentUser.payload.cv_pdf_name,
         state.user?.currentUser.payload.name,
         state.user?.currentUser.payload.lastName,
         state.user?.currentUser.payload.position,
@@ -44,6 +49,8 @@ const GeneralInformation = () => {
 
     const dispatch = useDispatch();
     const [profileImage, setProfileImage] = useState(imgBase64);
+    const [cvFileUrl, setCvFileUrl] = useState(cvPdf);
+    const [cvFile, setCvFile] = useState(null);
 
     //Inputs hook
     const nameValue = useInput(name, {
@@ -216,6 +223,27 @@ const GeneralInformation = () => {
               );
     };
 
+    const handleUploadCvFile = () => {
+        if (uploadPlofileCV(dispatch, cvFile, cvPdfNameOld)) {
+            dispatch(
+                showNotification(
+                    "CV has been updated.",
+                    "notification__success"
+                )
+            );
+            setCvFile(null);
+        } else {
+            dispatch(
+                showNotification(
+                    "CV  has not been updated.",
+                    "notification__error"
+                )
+            );
+            setCvFileUrl(cvPdf);
+            setCvFile(null);
+        }
+    };
+
     return (
         <>
             <section className="general">
@@ -233,7 +261,7 @@ const GeneralInformation = () => {
                         <div className="general__data">
                             <button className="button button--flex general__download">
                                 <InputFile
-                                    setImg={(image) => setProfileImage(image)}
+                                    setFile={(file) => setProfileImage(file)}
                                     typeValidation="image"
                                     multiple={false}
                                 />
@@ -304,6 +332,35 @@ const GeneralInformation = () => {
                             Save
                             <i className="uil uil-image"></i>
                         </button>
+                    </div>
+                    <div className="cv__container grid">
+                        <a href={cvFileUrl} target="_blank" rel="noreferrer">
+                            <i className="uil uil-file"></i>
+                            <div>Download pdf</div>
+                        </a>
+
+                        <div className="general__data">
+                            <button className="button button--flex general__download">
+                                <InputFile
+                                    setFile={(file) => {
+                                        setCvFile(file);
+                                        setCvFileUrl(URL.createObjectURL(file));
+                                    }}
+                                    typeValidation="pdf"
+                                    multiple={false}
+                                />
+                                <span>Download CV</span>
+                                <i className="uil uil-save"></i>
+                            </button>
+                            <button
+                                className="button button--flex"
+                                disabled={!cvFile}
+                                onClick={() => handleUploadCvFile()}
+                            >
+                                Save
+                                <i className="uil uil-image"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>

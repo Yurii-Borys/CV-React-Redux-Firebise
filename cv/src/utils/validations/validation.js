@@ -22,3 +22,10 @@ export const validateImageFormat = (image) => {
     }
     return true;
 }
+
+export const validatePdfFormat = (pdf) => {
+    if (!pdf?.name.match(/\.(pdf)$/)) {
+        return false;
+    }
+    return true;
+}

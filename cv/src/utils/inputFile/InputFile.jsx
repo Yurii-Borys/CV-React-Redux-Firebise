@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import "../input/input.scss";
 import ErrorMsg from "../errorMsg/ErrorMsg";
-import { validateImageFormat } from "../../utils/validations/validation";
+import {
+    validateImageFormat,
+    validatePdfFormat,
+} from "../../utils/validations/validation";
 import { getBase64 } from "../formatting/formattingFiles ";
 
-const InputFile = ({ setImg, typeValidation, multiple }) => {
+const InputFile = ({ setFile, typeValidation, multiple }) => {
     const [errorMassage, setErrorMassage] = useState("");
 
     const handleUploadFiles = (e) => {
-        debugger;
+        if (typeValidation === "pdf") {
+            if (!validatePdfFormat(e.target.files[0])) {
+                setErrorMassage("Select valid pdf file.");
+                return;
+            } else {
+                setFile(e.target.files[0]);
+                setErrorMassage("");
+            }
+        }
         if (typeValidation === "image") {
             if (!validateImageFormat(e.target.files[0])) {
                 setErrorMassage("Select valid image jpg/jpeg/png.");
@@ -17,7 +28,7 @@ const InputFile = ({ setImg, typeValidation, multiple }) => {
                 // Formating file in base64
                 getBase64(e.target.files[0])
                     .then((data) => {
-                        setImg(data);
+                        setFile(data);
                         console.log("data", data);
                     })
                     .catch((error) => console.log(error));
