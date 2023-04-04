@@ -9,10 +9,13 @@ import {
 import thunk from "redux-thunk";
 import userReducer from "./userReducer";
 import notificationReducer from "./notificationReducer";
+import messageReducer from "./messageReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
-    notification: notificationReducer
+    notification: notificationReducer,
+    messages: messageReducer
+
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

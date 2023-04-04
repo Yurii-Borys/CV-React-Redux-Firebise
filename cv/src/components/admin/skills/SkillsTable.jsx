@@ -26,7 +26,7 @@ const SkillsTable = ({
     };
 
     return (
-        <div className="skills__content">
+        <section className="skills__content">
             <h3 className="skills__title">{skillsTitle || " "}</h3>
             <div className="admin__skills__type">
                 {skills?.map((skill, index) => (
@@ -66,7 +66,7 @@ const SkillsTable = ({
                     <i className="uil uil-plus-circle"></i>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

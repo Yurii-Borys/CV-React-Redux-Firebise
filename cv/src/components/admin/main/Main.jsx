@@ -4,7 +4,7 @@ import GeneralInformation from "../generalInformation/GeneralInformation";
 import Education from "../education/Education";
 import Experience from "../experience/Experience";
 import Skills from "../skills/Skills";
-import Qualification from "../qualification/Qualification";
+import PrivateMessage from "../privateMessage/PrivateMessage";
 
 const Main = () => {
     const [activeNav, setActiveNav] = useState("general information");
@@ -14,7 +14,7 @@ const Main = () => {
         education: Education,
         experience: Experience,
         skills: Skills,
-        qualification: Qualification,
+        "private Message": PrivateMessage,
     };
 
     const DynamicComponent = [
@@ -22,7 +22,7 @@ const Main = () => {
         Education,
         Experience,
         Skills,
-        Qualification
+        PrivateMessage,
     ].find((component) => component === list[activeNav]);
 
     return (
