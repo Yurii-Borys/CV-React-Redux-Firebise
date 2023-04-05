@@ -336,7 +336,7 @@ const GeneralInformation = () => {
                     <div className="cv__container grid">
                         <a href={cvFileUrl} target="_blank" rel="noreferrer">
                             <i className="uil uil-file"></i>
-                            <div>Download pdf</div>
+                            <div>Download CV</div>
                         </a>
 
                         <div className="general__data">

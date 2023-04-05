@@ -35,11 +35,11 @@ const Experience = () => {
         setExpirienceList(expirienceList.filter((_, i) => i !== index));
     };
 
-    const handleUpdateDescriptionlist = (el, index) => {
+    const handleUpdateDescriptionlist = (list, index) => {
         let newList = [...expirienceList];
         newList = newList.map((item, i) => {
             if (i === index) {
-                return { ...item, description_expirience: el };
+                return { ...item, description_expirience: list };
             }
             return item;
         });
@@ -162,7 +162,7 @@ const Experience = () => {
             </section>
             {IsShowModal && (
                 <ExperienceDescriptionList
-                    descriptionExperience={
+                    descriptionExperienceList={
                         expirienceList[experienceListIndex]
                             .description_expirience || []
                     }

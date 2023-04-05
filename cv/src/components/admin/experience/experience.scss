@@ -35,9 +35,11 @@
 }
 
 .experience__uil-add {
-    position: absolute;
     cursor: pointer;
-    bottom: 0;
+    text-align: center;
+    i:before {
+        font-size: 2rem;
+    }
 }
 
 .admin_experience__form-tag {
@@ -172,6 +174,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 5% 100%;
+
     i {
         font-size: 1.2rem;
         margin-left: 0.2rem;
@@ -183,6 +186,7 @@
 }
 
 .experience__modal-textarea {
+    cursor: move;
     resize: none;
     height: inherit;
     outline: none;
